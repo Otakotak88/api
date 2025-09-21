@@ -14,5 +14,6 @@ export async function jsonBodyHandler(request, response){
         request.body = null
     }
 
+    // Adiciona o cabeçalho do tipo de dados JSON
     response.setHeader("Content-Type", "application/json")
 }
