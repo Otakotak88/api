@@ -1,5 +1,8 @@
 import { routes } from "../routes.js";
 import { extractQueryParams } from "../utils/extractQueryParams.js";
+import { Database } from "../utils/database.js";
+
+const database = new Database()
 
 export function routeHandler(request, response){
     // Recupera a rota conforme o método e URL.
@@ -17,8 +20,8 @@ export function routeHandler(request, response){
             request.params = params
             request.query = query ? extractQueryParams(query) : {}
         }
-
-        return route.controller(request, response)
+        
+        return route.controller({request, response, database})
     }
 
     // Retorna erro se a rota não é encontrada
